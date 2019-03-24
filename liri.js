@@ -15,7 +15,7 @@ var figlet = require('figlet');
 
 // access spotify keys info
 var spotify = new Spotify(keys.spotify)
-console.log(keys.spotify)
+// console.log(keys.spotify)
 
 // cool title
 figlet('LiRi Node App', function (err, data) {
@@ -38,7 +38,7 @@ figlet('LiRi Node App', function (err, data) {
 
 // check for user command (if-else or switch) - 4 options, run your own function to pull data
 
-// BANDS in TOWN function
+// BANDS IN TOWN 
 function getMyBand(artists) {
     var queryURL = 'https://rest.bandsintown.com/artists/' + artists + '/events?app_id=codingbootcamp';
     axios.get(queryURL)
@@ -59,24 +59,49 @@ function getMyBand(artists) {
 
 // getMyBand("Drake");
 
-// function getSpotify(song) {
-//     spotify
-//         .search({ type: 'track', query: song })
-//         .then(function (response) {
-//             console.log("My song: ", response.data);
-//         })
-//         .catch(function (err) {
-//             console.log(err);
-//         });
-// }
-
-
-spotify.search({ type: 'track', query: 'All the Small Things' }, function (err, response) {
-    if (err) {
-        return console.log('Error occurred: ' + err);
-    }
-
-    console.log(response);
-});
+//  SPOTIFY
+function getSpotify(song) {
+    spotify
+        .search({
+            type: 'track', query: 'song'
+        })
+        .then(function (response) {
+            console.log("My song: ", song, "and data: ", response);
+            // not fetching data in a useful way...
+            // artist(s)
+            // song name
+            // preview link of song
+            // album
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+}
 
 // getSpotify("Happy");
+
+// OMDB
+function getMyMovie(movie) {
+    var queryURL1 = 'https://www.omdbapi.com/?t=' + movie + '&apikey=trilogy';
+    axios.get(queryURL1)
+        .then(function (response) {
+            // console.log(response.data);
+            for (let j = 0; j < response.data.length; j++) {
+                // for some reason, not reading my for loop...
+                var movieD = response.data[j];
+                console.log("Name: ", movieD["Title"]);
+                console.log("Year: ", movieD.Year);
+                console.log("IMDB Rating: ", movieD.Ratings[0].Value);
+                console.log("IMDB Rating: ", movieD.Ratings[1].Value);
+                console.log("Country: ", movieD.Country);
+                console.log("Language: ", movieD.Language);
+                console.log("Plot: ", movieD.Plot);
+                console.log("Actors: ", movieD.Actors);
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+getMyMovie("Jaws");
