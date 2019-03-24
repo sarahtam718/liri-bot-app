@@ -1,8 +1,5 @@
 // pseudocode
 
-// get spotify API key
-
-// install packages
 
 // require .env *AT THE TOP*
 // require("dotenv").config();
