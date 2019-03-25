@@ -46,14 +46,16 @@ inquirer
         // check for user command & run that function based on user input
         switch (inquirerResponse.command) {
             case "concert-this":
-                console.log("user chose concert");
+                // console.log("user chose concert");
                 getMyBand(inquirerResponse.desiredData);
                 break;
             case "spotify-this-song":
                 console.log("user chose song");
+                getSpotify(inquirerResponse.desiredData);
                 break;
             case "movie-this":
-                console.log("user chose movie");
+                // console.log("user chose movie");
+                getMyMovie(inquirerResponse.desiredData);
                 break;
             case "do-what-it-says":
                 console.log("do it!");
@@ -88,6 +90,7 @@ function getMyBand(artists) {
 function getSpotify(song) {
     spotify
         .search({
+            // it's not replacing song with user input...
             type: 'track', query: 'song'
         })
         .then(function (response) {
@@ -107,26 +110,24 @@ function getSpotify(song) {
 
 // OMDB
 function getMyMovie(movie) {
-    var queryURL1 = 'https://www.omdbapi.com/?t=' + movie + '&apikey=trilogy';
-    axios.get(queryURL1)
+    var queryURL = 'https://www.omdbapi.com/?t=' + movie + '&apikey=trilogy';
+    // console.log("this is the url: ", queryURL1);
+    axios.get(queryURL)
         .then(function (response) {
             // console.log(response.data);
-            for (let j = 0; j < response.data.length; j++) {
-                // for some reason, not reading my for loop...
-                var movieD = response.data[j];
-                console.log("Name: ", movieD["Title"]);
-                console.log("Year: ", movieD.Year);
-                console.log("IMDB Rating: ", movieD.Ratings[0].Value);
-                console.log("IMDB Rating: ", movieD.Ratings[1].Value);
-                console.log("Country: ", movieD.Country);
-                console.log("Language: ", movieD.Language);
-                console.log("Plot: ", movieD.Plot);
-                console.log("Actors: ", movieD.Actors);
-            }
+            var movieD = response.data;
+            console.log("Name: ", response.data.Title);
+            console.log("Year: ", movieD.Year);
+            console.log("IMDB Rating: ", movieD.Ratings[0].Value);
+            console.log("IMDB Rating: ", movieD.Ratings[1].Value);
+            console.log("Country: ", movieD.Country);
+            console.log("Language: ", movieD.Language);
+            console.log("Plot: ", movieD.Plot);
+            console.log("Actors: ", movieD.Actors);
         })
         .catch(function (error) {
             console.log(error);
         });
 }
 
-// getMyMovie("Jaws");
+// getMyMovie("Moonlight");
