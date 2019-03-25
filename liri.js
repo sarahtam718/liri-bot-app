@@ -18,25 +18,50 @@ var spotify = new Spotify(keys.spotify)
 // console.log(keys.spotify)
 
 // cool title
-figlet('LiRi Node App', function (err, data) {
-    if (err) {
-        console.log('Something went wrong...');
-        console.dir(err);
-        return;
-    }
-    console.log(data)
-});
+// figlet('LiRi Node App', function (err, data) {
+//     if (err) {
+//         console.log('Something went wrong...');
+//         console.dir(err);
+//         return;
+//     }
+//     console.log(data)
+// });
 
 // user command choice
-// * `concert-this`
-
-//     * `spotify-this-song`
-
-//     * `movie-this`
-
-//     * `do-what-it-says`
-
-// check for user command (if-else or switch) - 4 options, run your own function to pull data
+inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "What is your command?",
+            name: "command"
+        },
+        {
+            type: "input",
+            message: "Please provide the artist, song, or movie you wish to see:",
+            name: "desiredData"
+        }
+    ])
+    .then(function (inquirerResponse) {
+        // console.log("User input: ", inquirerResponse.command, inquirerResponse.desiredData)
+        // check for user command & run that function based on user input
+        switch (inquirerResponse.command) {
+            case "concert-this":
+                console.log("user chose concert");
+                getMyBand(inquirerResponse.desiredData);
+                break;
+            case "spotify-this-song":
+                console.log("user chose song");
+                break;
+            case "movie-this":
+                console.log("user chose movie");
+                break;
+            case "do-what-it-says":
+                console.log("do it!");
+                break;
+            default:
+                console.log("this is the default")
+        }
+    });
 
 // BANDS IN TOWN 
 function getMyBand(artists) {
@@ -104,4 +129,4 @@ function getMyMovie(movie) {
         });
 }
 
-getMyMovie("Jaws");
+// getMyMovie("Jaws");
