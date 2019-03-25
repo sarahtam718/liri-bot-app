@@ -28,42 +28,42 @@ var spotify = new Spotify(keys.spotify)
 // });
 
 // user command choice
-inquirer
-    .prompt([
-        {
-            type: "input",
-            message: "What is your command?",
-            name: "command"
-        },
-        {
-            type: "input",
-            message: "Please provide the artist, song, or movie you wish to see:",
-            name: "desiredData"
-        }
-    ])
-    .then(function (inquirerResponse) {
-        // console.log("User input: ", inquirerResponse.command, inquirerResponse.desiredData)
-        // check for user command & run that function based on user input
-        switch (inquirerResponse.command) {
-            case "concert-this":
-                // console.log("user chose concert");
-                getMyBand(inquirerResponse.desiredData);
-                break;
-            case "spotify-this-song":
-                console.log("user chose song");
-                getSpotify(inquirerResponse.desiredData);
-                break;
-            case "movie-this":
-                // console.log("user chose movie");
-                getMyMovie(inquirerResponse.desiredData);
-                break;
-            case "do-what-it-says":
-                console.log("do it!");
-                break;
-            default:
-                console.log("this is the default")
-        }
-    });
+// inquirer
+//     .prompt([
+//         {
+//             type: "input",
+//             message: "What is your command?",
+//             name: "command"
+//         },
+//         {
+//             type: "input",
+//             message: "Please provide the artist, song, or movie you wish to see:",
+//             name: "desiredData"
+//         }
+//     ])
+//     .then(function (inquirerResponse) {
+//         // console.log("User input: ", inquirerResponse.command, inquirerResponse.desiredData)
+//         // check for user command & run that function based on user input
+//         switch (inquirerResponse.command) {
+//             case "concert-this":
+//                 // console.log("user chose concert");
+//                 getMyBand(inquirerResponse.desiredData);
+//                 break;
+//             case "spotify-this-song":
+//                 console.log("user chose song");
+//                 getSpotify(inquirerResponse.desiredData);
+//                 break;
+//             case "movie-this":
+//                 // console.log("user chose movie");
+//                 getMyMovie(inquirerResponse.desiredData);
+//                 break;
+//             case "do-what-it-says":
+//                 console.log("do it!");
+//                 break;
+//             default:
+//                 console.log("this is the default")
+//         }
+//     });
 
 // BANDS IN TOWN 
 function getMyBand(artists) {
@@ -90,23 +90,21 @@ function getMyBand(artists) {
 function getSpotify(song) {
     spotify
         .search({
-            // it's not replacing song with user input...
-            type: 'track', query: 'song'
+            type: 'track', query: song
         })
         .then(function (response) {
-            console.log("My song: ", song, "and data: ", response);
-            // not fetching data in a useful way...
-            // artist(s)
-            // song name
-            // preview link of song
-            // album
+            // console.log("My song: ", song, "and data: ", response);
+            console.log("Name: ", response.tracks.items[0].name);
+            console.log("Artist(s): ", response.tracks.items[0].album.artists[0].name);
+            console.log("Preview Link: ", response.tracks.items[0].preview_url);
+            console.log("Album: ", response.tracks.items[0].album.name);
         })
         .catch(function (err) {
             console.log(err);
         });
 }
 
-// getSpotify("Happy");
+getSpotify("In My Feelings");
 
 // OMDB
 function getMyMovie(movie) {
