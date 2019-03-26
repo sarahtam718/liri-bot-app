@@ -134,8 +134,13 @@ function App(command, desiredData) {
     // check for user command & run that function based on user input
     switch (command) {
         case "concert-this":
-            // console.log("user chose concert");
-            getMyBand(desiredData);
+            if (desiredData === "") {
+                console.log("This is the default: ")
+                getMyBand("Passion Pit");
+            } else {
+                // console.log("user chose concert");
+                getMyBand(desiredData);
+            }
             break;
         case "spotify-this-song":
             if (desiredData === "") {
@@ -168,7 +173,7 @@ function App(command, desiredData) {
             console.log()
             break;
         default:
-            console.log("this is the default")
+            console.log("This is the default");
     }
 }
 
