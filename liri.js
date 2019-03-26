@@ -10,7 +10,7 @@ var inquirer = require("inquirer");
 var moment = require("moment");
 var fs = require("fs");
 var axios = require("axios");
-// cool title package...
+// cool title packages...
 var figlet = require('figlet');
 const chalkAnimation = require('chalk-animation');
 
