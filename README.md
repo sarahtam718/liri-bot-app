@@ -14,8 +14,25 @@ To get started, the user will have to use their own spotify API key. From there,
     d. do-what-it-says
 The second question asks the user for the artist, song, or movie to search. The user can either enter their desired medium (only one at a time) or enter nothing and receive the default data. Choose the default for "do-what-it-says".
 
-_See screenshots in images folder for a visual representation_
+_See screenshots below or in images folder for a visual representation_
 
 ## Who maintains and contributes to LIRI?
 Junior dev Sarah Tam is your maintenance woman. 
 See more projects here --> github: sarahtam718
+
+## Visual
+
+Start Here
+![Home](https://github.com/sarahtam718/liri-node-app/blob/master/images/home.png/)
+
+concert-this
+![concert-this](https://github.com/sarahtam718/liri-node-app/blob/master/images/concert.png)
+
+spotify-this-song
+![spotify-this-song](https://github.com/sarahtam718/liri-node-app/blob/master/images/spotify.png)
+
+movie-this
+![movie-this](https://github.com/sarahtam718/liri-node-app/blob/master/images/movie.png)
+
+do-what-it-says
+![do-it](https://github.com/sarahtam718/liri-node-app/blob/master/images/dowhatitsays.png)
